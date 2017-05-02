@@ -27,16 +27,18 @@ class Node:
         print(current.data, end=']\n')
 
 
-def del_dups(head):
+def delete_node(head, data):
 
-    seen = [head.data]
     current = head
 
+    if current.data == data:
+        return current.next
+
     while current.next:
-        if current.next.data in seen:
+        if current.next.data == data:
             current.next = current.next.next
+            return head
         else:
-            seen.append(current.next.data)
             current = current.next
 
     return head
@@ -47,9 +49,9 @@ if __name__ == '__main__':
     ll = Node(1)
     ll.append_to_tail(2)
     ll.append_to_tail(3)
-    ll.append_to_tail(2)
     ll.append_to_tail(4)
+    ll.append_to_tail(5)
     ll.print()
-    ll = del_dups(ll)
+    ll = delete_node(ll, 3)
     ll.print()
 
